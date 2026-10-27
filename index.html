@@ -118,16 +118,6 @@ input[type=range]{accent-color:var(--sage)}
 .plan-day p{margin:4px 0 0;font-size:.94rem}
 .tourrow b{white-space:nowrap}
 .tourrow span{color:var(--muted)}
-.thread{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
-.thread .who{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);font-weight:700}
-.thread h3{margin:4px 0 6px}
-.thread p{color:var(--muted);font-size:.96rem}
-.thread img.postimg{width:100%;max-height:320px;object-fit:cover;border-radius:10px;margin:10px 0}
-.thread .comments{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-.thread.open .comments{display:block}
-.comment{padding:9px 0;border-top:1px solid var(--line);font-size:.94rem}
-.comment:first-of-type{border-top:none}
-.comment .who{text-transform:none;letter-spacing:0;font-size:.82rem}
 footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
 .small{font-size:.86rem;color:var(--muted)}
 @media(max-width:860px){.hero-grid,.grid2,.tracker{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.hero img{height:360px}.tl{grid-template-columns:1fr}}
@@ -178,7 +168,7 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
     <button class="card" onclick="showView('postpartum')"><div class="num">03</div><h3>Postpartum →</h3><p>The pillar everyone skips. Weekly mental-health check-ins, honest recovery pacing, and keeping your groove on purpose.</p></button>
     <button class="card" onclick="showView('music')"><div class="num">04</div><h3>Music →</h3><p>A real spotlight on sapphic &amp; LGBTQ artists — watch the new videos, read the latest coverage, and see who's actually on tour.</p></button>
     <button class="card" onclick="showView('read')"><div class="num">05</div><h3>Read →</h3><p>Sapphic writers worth your shelf, starting with my favorite, Haley Cass — plus a reading groove that survives busy seasons.</p></button>
-    <button class="card" onclick="showView('community')"><div class="num">06</div><h3>Community →</h3><p>The kitchen table: threads, comments, and pictures from women in the same season of life — including couples already raising kids, whose advice helps those earlier in the journey. Our private Facebook group is where the conversation lives — joining is optional, at your own discretion.</p></button>
+    <button class="card" onclick="showView('community')"><div class="num">06</div><h3>Community →</h3><p>The kitchen table: conversation and pictures from women in the same season of life — including couples already raising kids, whose advice helps those earlier in the journey. Our private Facebook group is where the conversation lives — joining is optional, at your own discretion.</p></button>
   </div>
 
   <div style="margin-top:52px;max-width:760px">
@@ -437,7 +427,7 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 
 <!-- ============ COMMUNITY ============ -->
 <section class="view" id="view-community"><div class="wrap">
-  <div class="sec-head"><div class="eyebrow">Community · The kitchen table</div><h2>Threads, comments, and people in the same season.</h2><p>This is the hangout space — ask the question you'd ask a group chat at midnight, post the photo of the nursery corner or the concert ticket stub, get answers from women actually living it. Lesbian couples raising kids belong here too, not just those trying, pregnant, or postpartum — we're all in this together, raising kids is just as hard, and parents with children can give advice to those earlier in the journey. Below is a working demo of how it will feel: start a thread, attach a picture, comment on others.</p></div>
+  <div class="sec-head"><div class="eyebrow">Community · The kitchen table</div><h2>People in the same season.</h2><p>This is the hangout space — ask the question you'd ask a group chat at midnight, post the photo of the nursery corner or the concert ticket stub, get answers from women actually living it. Lesbian couples raising kids belong here too, not just those trying, pregnant, or postpartum — we're all in this together, raising kids is just as hard, and parents with children can give advice to those earlier in the journey.</p></div>
   <div class="notice" style="margin-bottom:22px;padding:22px 24px">
     <div class="eyebrow" style="margin-bottom:6px">Our private Facebook group</div>
     <h3 style="margin:0 0 8px;font-size:1.4rem">The kitchen table, over on Facebook</h3>
@@ -445,23 +435,6 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
     <p style="margin:0 0 16px;color:var(--muted);max-width:680px">This is just for community. Nobody should feel pressured to join — it&rsquo;s completely up to you. The group is kept separate on purpose, so the tracker here stays protected: nothing you enter in the tracker ever leaves your device, whether you join the group or not. Join at your own discretion, post when you want, or just lurk — lurking is a valid introduction.</p>
     <a class="btn sage" href="https://www.facebook.com/share/g/1Fz7ZBmoue/" target="_blank" rel="noopener">Join The Sapphic Seasons on Facebook &rarr;</a>
     <p class="small" style="margin-top:16px;max-width:680px"><strong style="color:var(--ink)">An honest note on privacy:</strong> the group lives on Facebook, so Facebook&rsquo;s own privacy rules apply there — separate from this site&rsquo;s promise. We don&rsquo;t sell your data, and the tracker doesn&rsquo;t take it, but anything you choose to post in the group is shared under Facebook&rsquo;s terms, not this site&rsquo;s. Only share there what you&rsquo;re comfortable sharing on Facebook.</p>
-    <p class="small" style="margin-top:8px">The starter threads below are still here as a little on-site taster — anything you add to them is saved only in your own browser, on this device.</p>
-  </div>
-  <div class="grid2" style="align-items:start">
-    <div class="card">
-      <h3 style="margin-top:0">Start a thread</h3>
-      <div class="field"><label for="ctTitle">Title</label><input id="ctTitle" placeholder="e.g. What got you through the two-week wait?"></div>
-      <div class="field"><label for="ctBody">Your post</label><textarea id="ctBody" rows="4" placeholder="Say it like you'd say it to a friend..."></textarea></div>
-      <div class="field"><label for="ctPhoto">Picture (optional)</label><input type="file" id="ctPhoto" accept="image/*"></div>
-      <img id="ctPreview" alt="Preview of your attached picture" style="display:none;width:100%;max-height:240px;object-fit:cover;border-radius:10px;margin-bottom:12px">
-      <button class="btn sage" style="width:100%;justify-content:center" onclick="postThread()">Post thread</button>
-      <p class="small" id="ctMsg">Posts as “You,” saved in this browser only.</p>
-      <button class="btn secondary" style="width:100%;justify-content:center" onclick="clearCommunity()">Clear my demo threads &amp; comments</button>
-    </div>
-    <div>
-      <h3 style="margin-top:0">Threads</h3>
-      <div id="threadFeed" style="display:grid;gap:14px"></div>
-    </div>
   </div>
 </div></section>
 </main>
@@ -620,92 +593,6 @@ function renderBlankCal(){
    cal.appendChild(el);
  }
 }
-// ---- Community demo (this browser only) ----
-function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-var STARTERS=[
- {id:'s1',by:'Sapphic Seasons · starter thread',title:'Welcome in — introduce yourself (or don\u2019t)',body:'This is the kitchen table of the site. Say hi, say where you are in the journey \u2014 tracking, trying, pregnant, postpartum, or just here for the music and the books. Lurking is also a valid introduction.',img:null,when:'Starter thread',comments:[]},
- {id:'s2',by:'Sapphic Seasons · starter thread',title:'The song that got you through it',body:'Every season of this has a song. The two-week wait, the hard appointment, the 3am feed. Drop yours \u2014 the best listening lists come from each other, not algorithms. (Ours lately: Maddie Zahm, on tour now \u2014 see the Music tab.)',img:null,when:'Starter thread',comments:[]},
- {id:'s3',by:'Sapphic Seasons · starter thread',title:'Show us your shelf / your corner',body:'Attach a picture: the book stack by your bed, the nursery corner that finally feels right, the walking route that saves your head. Small, real corners of real lives.',img:null,when:'Starter thread',comments:[]}
-];
-function getThreads(){
- var mine=[]; try{mine=JSON.parse(localStorage.getItem('rooted-community')||'[]');}catch(e){}
- return mine.filter(function(m){return !!m.title;}).concat(STARTERS);
-}
-function saveThreads(mine){try{localStorage.setItem('rooted-community',JSON.stringify(mine));}catch(e){document.getElementById('ctMsg').textContent='Heads up: that picture was too big to save in this browser, so this thread lives here only until you leave the page.';}}
-function myThreads(){try{return JSON.parse(localStorage.getItem('rooted-community')||'[]');}catch(e){return[];}}
-var pendingImg=null;
-function renderThreads(){
- var feed=document.getElementById('threadFeed'); feed.innerHTML='';
- getThreads().forEach(function(t){
-   var d=document.createElement('article'); d.className='thread'; d.id='thread-'+t.id;
-   var commentsHtml=t.comments.map(function(c){return '<div class="comment"><span class="who">'+esc(c.by)+'</span><br>'+esc(c.body)+'</div>';}).join('');
-   d.innerHTML='<div class="who">'+esc(t.by)+' · '+esc(t.when)+'</div><h3>'+esc(t.title)+'</h3><p>'+esc(t.body)+'</p>'
-     +(t.img?'<img class="postimg" src="'+t.img+'" alt="Picture attached to this thread">':'')
-     +'<button class="btn secondary" onclick="toggleThread(\''+t.id+'\')">Comments ('+t.comments.length+')</button>'
-     +'<div class="comments">'+commentsHtml
-     +'<div class="field" style="margin-top:10px"><label>Add a comment</label><textarea rows="2" id="cm-'+t.id+'" placeholder="Be kind, be real..."></textarea></div>'
-     +'<button class="btn sage" onclick="addComment(\''+t.id+'\')">Post comment</button></div>';
-   feed.appendChild(d);
- });
-}
-function toggleThread(id){document.getElementById('thread-'+id).classList.toggle('open');}
-function postThread(){
- var title=document.getElementById('ctTitle').value.trim(); var body=document.getElementById('ctBody').value.trim();
- if(!title||!body){document.getElementById('ctMsg').textContent='Give it a title and a few words first.';return;}
- var mine=myThreads();
- mine.unshift({id:'u'+Date.now(),by:'You',title:title,body:body,img:pendingImg,when:'Just now · this browser only',comments:[]});
- saveThreads(mine);
- document.getElementById('ctTitle').value=''; document.getElementById('ctBody').value=''; document.getElementById('ctPhoto').value=''; pendingImg=null;
- document.getElementById('ctPreview').style.display='none';
- document.getElementById('ctMsg').textContent='Posted — saved in this browser only.';
- renderThreads();
- var first=document.querySelector('#threadFeed .thread'); if(first)first.classList.add('open');
-}
-function addComment(id){
- var box=document.getElementById('cm-'+id); var text=box.value.trim(); if(!text)return;
- var mine=myThreads();
- if(id.charAt(0)==='s'){
-   var entry=mine.filter(function(m){return m.commentFor===id;})[0];
-   if(!entry){entry={id:'c'+id,commentFor:id,comments:[]};mine.push(entry);}
-   entry.comments.push({by:'You',body:text});
- }else{
-   var t=mine.filter(function(m){return m.id===id;})[0]; if(!t)return;
-   t.comments.push({by:'You',body:text});
- }
- saveThreads(mine);
- renderThreads();
- var el=document.getElementById('thread-'+id); if(el)el.classList.add('open');
-}
-function clearCommunity(){try{localStorage.removeItem('rooted-community');}catch(e){} renderThreads(); document.getElementById('ctMsg').textContent='Your demo threads and comments are cleared. The Sapphic Seasons starter threads stay.';}
-// merge visitor comments left on starter threads
-var _renderThreads=renderThreads;
-renderThreads=function(){
- var mine=myThreads();
- STARTERS.forEach(function(s){
-   var entry=mine.filter(function(m){return m.commentFor===s.id;})[0];
-   s.comments=entry?entry.comments:[];
- });
- _renderThreads();
-};
-document.getElementById('ctPhoto').addEventListener('change',function(){
- var f=this.files&&this.files[0]; if(!f){pendingImg=null;return;}
- var reader=new FileReader();
- reader.onload=function(){
-   var img=new Image();
-   img.onload=function(){
-     var max=1000, w=img.width, h=img.height;
-     if(w>max||h>max){var r=max/Math.max(w,h); w=Math.round(w*r); h=Math.round(h*r);}
-     var c=document.createElement('canvas'); c.width=w; c.height=h;
-     c.getContext('2d').drawImage(img,0,0,w,h);
-     pendingImg=c.toDataURL('image/jpeg',0.82);
-     var p=document.getElementById('ctPreview'); p.src=pendingImg; p.style.display='block';
-   };
-   img.src=reader.result;
- };
- reader.readAsDataURL(f);
-});
-renderThreads();
-
 // init
 (function(){
  var today=new Date().toISOString().slice(0,10); document.getElementById('logDate').value=today;

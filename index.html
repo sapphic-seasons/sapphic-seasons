@@ -4,7 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:,">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#7d8c6f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Sapphic Seasons">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-startup-image" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="/splash.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/splash.png">
 <title>Sapphic Seasons — A Lifestyle Home for Queer Women</title>
 <style>
 /* Self-hosted fonts — served from this site only, no Google Fonts request on load */
@@ -132,6 +148,21 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 .small{font-size:.86rem;color:var(--muted)}
 @media(max-width:860px){.hero-grid,.grid2,.tracker{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.hero img{height:360px}.tl{grid-template-columns:1fr}}
 @media(max-width:560px){.grid3,.stats{grid-template-columns:1fr}.nav{justify-content:center}.tourrow{flex-direction:column;gap:2px}}
+/* PWA safety only — no layout or design changes: respect device safe areas and prevent sideways scroll */
+html,body{overflow-x:hidden}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+/* PWA notes — install prompt, update notice, offline note. Quiet cards in the site's existing palette. */
+.pwa-stack{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:flex;flex-direction:column;gap:8px;max-width:520px;margin:0 auto;pointer-events:none}
+.pwa-note{pointer-events:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 6px 24px rgba(30,33,28,.14);font-size:.92rem}
+.pwa-note[hidden]{display:none}
+.pwa-note h3{font-size:1rem;margin:0 0 4px}
+.pwa-note p{margin:0;color:var(--muted)}
+.pwa-note ol{margin:8px 0 0;padding-left:20px;color:var(--muted)}
+.pwa-note-row{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.pwa-close{flex:none;background:none;border:none;color:var(--muted);font-size:1.25rem;line-height:1;cursor:pointer;padding:2px 4px;font-family:inherit}
+.pwa-install-btn{margin-top:10px}
+button.pwa-update-note{width:100%;text-align:left;font:inherit;cursor:pointer;color:var(--ink)}
+button.pwa-update-note strong{color:var(--sage)}
 </style>
 </head>
 <body>
@@ -652,6 +683,38 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 </main>
 <footer><div class="wrap"><p><strong style="color:var(--ink)">Sapphic Seasons</strong> — a personal lifestyle project first: health, music, books, and honest stories for queer women. If it helps you too, welcome in.</p><p>We don&rsquo;t sell your data. Your cycle is not the product.</p><p>Educational content only, not medical advice. Cycle predictions are estimates. Talk to your OB/GYN, midwife, or primary care provider about your own health, fertility, exercise in pregnancy, and postpartum recovery.</p><p>Palette note, on purpose: sage, olive, cream, warm brown, charcoal.</p><p><button class="textlink" onclick="goContact()">Contact — feedback &amp; questions →</button></p></div></footer>
 
+<div class="pwa-stack" aria-live="polite">
+  <section class="pwa-note" id="pwaInstall" hidden>
+    <div class="pwa-note-row">
+      <div>
+        <h3>Add Sapphic Seasons to Your Home Screen</h3>
+        <div id="pwaInstallAndroid" hidden>
+          <p>Keep Sapphic Seasons one tap away — install it right here, no app store trip needed.</p>
+          <button class="btn sage pwa-install-btn" type="button" id="pwaInstallBtn">Install Sapphic Seasons</button>
+        </div>
+        <div id="pwaInstallIos" hidden>
+          <p>On your iPhone, it takes two taps:</p>
+          <ol>
+            <li>Tap the <strong style="color:var(--ink)">Share</strong> button in Safari&rsquo;s toolbar.</li>
+            <li>Then tap <strong style="color:var(--ink)">Add to Home Screen</strong>.</li>
+          </ol>
+        </div>
+      </div>
+      <button class="pwa-close" type="button" id="pwaInstallDismiss" aria-label="Dismiss install message">&times;</button>
+    </div>
+  </section>
+  <button class="pwa-note pwa-update-note" type="button" id="pwaUpdate" hidden><strong>New version available</strong> — tap to refresh</button>
+  <section class="pwa-note" id="pwaOffline" hidden>
+    <div class="pwa-note-row">
+      <div>
+        <h3>You&rsquo;re offline</h3>
+        <p>No worries — Sapphic Seasons and your tracker still work offline. Videos, external links, and forms need internet, so those will load again once you&rsquo;re back online.</p>
+      </div>
+      <button class="pwa-close" type="button" id="pwaOfflineDismiss" aria-label="Dismiss offline message">&times;</button>
+    </div>
+  </section>
+</div>
+
 <script>
 var VIEWS=['home','track','move','baby','postpartum','music','read','community','popculture'];
 function showView(name){
@@ -834,6 +897,134 @@ function renderBlankCal(){
  renderLogs();
  var h=(location.hash||'').replace('#','');
  if(VIEWS.indexOf(h)>=0&&h!=='home')showView(h);
+})();
+</script>
+<script>
+/* ---- Sapphic Seasons PWA: install prompt, offline note, service worker ----
+   Privacy: this code only ever touches one localStorage key of its own
+   (ss-pwa-install-dismissed). It never reads, writes, or sends tracker data. */
+(function(){
+  var DISMISS_KEY='ss-pwa-install-dismissed';
+  function isStandalone(){
+    try{ if(window.matchMedia('(display-mode: standalone)').matches) return true; }catch(e){}
+    return window.navigator.standalone===true;
+  }
+  function installDismissed(){
+    try{ return localStorage.getItem(DISMISS_KEY)==='1'; }catch(e){ return false; }
+  }
+  function rememberInstallDismissed(){
+    try{ localStorage.setItem(DISMISS_KEY,'1'); }catch(e){}
+  }
+
+  /* ---- Install element ---- */
+  var installCard=document.getElementById('pwaInstall');
+  var androidBox=document.getElementById('pwaInstallAndroid');
+  var iosBox=document.getElementById('pwaInstallIos');
+  var deferredPrompt=null;
+
+  function hideInstall(){ if(installCard) installCard.hidden=true; }
+  function showInstall(which){
+    if(!installCard || isStandalone() || installDismissed()) return;
+    if(which==='android'){ androidBox.hidden=false; iosBox.hidden=true; }
+    else { iosBox.hidden=false; androidBox.hidden=true; }
+    installCard.hidden=false;
+  }
+  if(installCard){
+    if(isStandalone() || installDismissed()){
+      hideInstall();
+    } else {
+      /* iPhone Safari only: no install event exists there, so show the
+         Share -> Add to Home Screen steps. Other browsers stay quiet until
+         Chrome/Android actually offers an install (see below). */
+      var ua=window.navigator.userAgent||'';
+      var isIOS=/iPhone|iPad|iPod/.test(ua) || (window.navigator.platform==='MacIntel' && window.navigator.maxTouchPoints>1);
+      var isSafari=/Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|Chrome|Android/.test(ua);
+      if(isIOS && isSafari) showInstall('ios');
+    }
+    document.getElementById('pwaInstallDismiss').addEventListener('click',function(){
+      rememberInstallDismissed(); hideInstall();
+    });
+  }
+  window.addEventListener('beforeinstallprompt',function(ev){
+    ev.preventDefault();
+    deferredPrompt=ev;
+    showInstall('android');
+  });
+  var installBtn=document.getElementById('pwaInstallBtn');
+  if(installBtn){
+    installBtn.addEventListener('click',function(){
+      if(!deferredPrompt){ hideInstall(); return; }
+      var promptEvent=deferredPrompt; deferredPrompt=null;
+      promptEvent.prompt();
+      if(promptEvent.userChoice){
+        promptEvent.userChoice.then(function(choice){
+          if(choice && choice.outcome==='accepted'){ rememberInstallDismissed(); }
+          hideInstall();
+        }).catch(function(){ hideInstall(); });
+      } else {
+        hideInstall();
+      }
+    });
+  }
+  window.addEventListener('appinstalled',function(){
+    rememberInstallDismissed(); hideInstall();
+  });
+
+  /* ---- Offline note ---- */
+  var offlineCard=document.getElementById('pwaOffline');
+  var offlineDismissed=false;
+  function syncOffline(){
+    if(!offlineCard) return;
+    if(window.navigator.onLine){ offlineDismissed=false; offlineCard.hidden=true; }
+    else if(!offlineDismissed){ offlineCard.hidden=false; }
+  }
+  if(offlineCard){
+    document.getElementById('pwaOfflineDismiss').addEventListener('click',function(){
+      offlineDismissed=true; offlineCard.hidden=true;
+    });
+    window.addEventListener('offline',syncOffline);
+    window.addEventListener('online',syncOffline);
+    syncOffline();
+  }
+
+  /* ---- Service worker: HTTPS only, and only where supported ---- */
+  if('serviceWorker' in navigator && window.location.protocol==='https:'){
+    var waitingWorker=null;
+    var updateNote=document.getElementById('pwaUpdate');
+    var wantsReload=false;
+    function showUpdate(worker){
+      if(!worker) return;
+      waitingWorker=worker;
+      if(updateNote) updateNote.hidden=false;
+    }
+    if(updateNote){
+      updateNote.addEventListener('click',function(){
+        if(!waitingWorker){ window.location.reload(); return; }
+        wantsReload=true;
+        waitingWorker.postMessage({type:'SKIP_WAITING'});
+        /* Reload once the waiting worker takes over; fall back to a timed
+           reload if that event never arrives. No auto-reload before a tap. */
+        setTimeout(function(){ if(wantsReload){ wantsReload=false; window.location.reload(); } },900);
+      });
+    }
+    navigator.serviceWorker.addEventListener('controllerchange',function(){
+      if(wantsReload){ wantsReload=false; window.location.reload(); }
+    });
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('/sw.js').then(function(reg){
+        if(reg.waiting && navigator.serviceWorker.controller) showUpdate(reg.waiting);
+        reg.addEventListener('updatefound',function(){
+          var installing=reg.installing;
+          if(!installing) return;
+          installing.addEventListener('statechange',function(){
+            if(installing.state==='installed' && navigator.serviceWorker.controller){
+              showUpdate(reg.waiting || installing);
+            }
+          });
+        });
+      }).catch(function(){ /* No worker available here — the site works as before. */ });
+    });
+  }
 })();
 </script>
 <script data-goatcounter="https://sapphic-seasons.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

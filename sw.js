@@ -1,10 +1,10 @@
-/* Sapphic Seasons service worker — v3
+/* Sapphic Seasons service worker — v4
    Caches ONLY the site's own static files (the HTML shell, icons, manifest).
    It NEVER reads localStorage, NEVER caches POST requests or form submissions,
    and NEVER caches tracker data. Tracker data lives in the browser's
    localStorage only, which a service worker cannot access.
    Bump CACHE_NAME on every site deploy so installed users get new content. */
-const CACHE_NAME = 'sapphic-seasons-v3';
+const CACHE_NAME = 'sapphic-seasons-v4';
 const CORE = [
   '/',
   '/index.html',
